@@ -1,34 +1,63 @@
-.brand-logo-frame{
-  width:64px;
-  height:64px;
-  flex:0 0 64px;
-  display:grid;
-  place-items:center;
-  overflow:visible;
-  border-radius:18px;
-  background:linear-gradient(135deg,#e7f8f6,#ece8ff);
+.brand-lockup{
+  display:flex;
+  align-items:center;
+  gap:14px;
 }
 
-.brand-logo-frame img{
-  display:block;
-  width:50px !important;
-  height:50px !important;
-  max-width:none !important;
+.brand-lockup .brand-logo-frame{
+  width:78px !important;
+  height:78px !important;
+  flex:0 0 78px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  align-self:center !important;
+  overflow:visible !important;
+  border-radius:20px !important;
+  background:linear-gradient(135deg,#e7f8f6,#ece8ff) !important;
+  color:transparent !important;
+  font-size:0 !important;
+  line-height:0 !important;
+}
+
+.brand-lockup .brand-logo-frame img{
+  position:static !important;
+  display:block !important;
+  width:auto !important;
+  height:66px !important;
+  max-width:66px !important;
+  max-height:66px !important;
+  min-width:0 !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
   object-fit:contain !important;
   object-position:center center !important;
+  overflow:visible !important;
+  clip:auto !important;
+  clip-path:none !important;
+  transform:none !important;
+  border:0 !important;
   border-radius:0 !important;
   background:transparent !important;
 }
 
+.brand-lockup > div > span{
+  color:var(--muted);
+  font-size:.72rem;
+  line-height:1.4;
+}
+
 @media(max-width:520px){
-  .brand-logo-frame{
-    width:58px;
-    height:58px;
-    flex-basis:58px;
+  .brand-lockup .brand-logo-frame{
+    width:70px !important;
+    height:70px !important;
+    flex-basis:70px !important;
   }
 
-  .brand-logo-frame img{
-    width:46px !important;
-    height:46px !important;
+  .brand-lockup .brand-logo-frame img{
+    height:60px !important;
+    max-width:60px !important;
+    max-height:60px !important;
   }
 }
