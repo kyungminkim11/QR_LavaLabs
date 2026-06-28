@@ -48,6 +48,8 @@ npx serve
 
 `main` 브랜치에 변경 사항이 반영되면 GitHub Actions가 GitHub Pages로 자동 배포합니다.
 
+GitHub Pages 배포 재실행: 2026-06-28
+
 ## 커스터마이징
 
 - `styles.css`에서 색상 변수를 수정하여 테마를 변경할 수 있습니다.
