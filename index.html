@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAVA LABS - Digital Business Card</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/lava_labs_logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <!-- 인트로 섹션 -->
+    <section class="intro-section">
+        <div class="logo-container">
+            <img src="assets/lava_labs_logo.png" alt="LAVA LABS" class="logo">
+        </div>
+        <h1 class="intro-text">오직 당신의 브랜드를 위해 디렉팅 합니다</h1>
+    </section>
+
+    <!-- 명함 정보 섹션 -->
+    <section class="card-section">
+        <div class="card-container">
+            <button class="share-btn share-btn-top" onclick="shareCard()" aria-label="명함 공유하기">
+                <i class="fas fa-share-alt"></i> 명함 공유
+            </button>
+            <img src="assets/lava_labs_logo.png" alt="LAVA LABS 로고" class="profile-logo">
+            <h2>김경민</h2>
+            <p class="title">Brand Partner</p>
+            <div class="contact-info">
+                <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:010-9057-3970" aria-label="전화번호">010-9057-3970</a> <button class="copy-btn" onclick="copyToClipboard('010-9057-3970')" title="복사" aria-label="전화번호 복사"><i class="fas fa-copy"></i></button></p>
+                <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:info@lavalabs.co.kr" aria-label="이메일">info@lavalabs.co.kr</a> <button class="copy-btn" onclick="copyToClipboard('info@lavalabs.co.kr')" title="복사" aria-label="이메일 복사"><i class="fas fa-copy"></i></button></p>
+                <p><i class="fas fa-globe"></i> <a href="https://lavalabs.co.kr" target="_blank" rel="noopener noreferrer">lavalabs.co.kr</a> <button class="copy-btn" onclick="copyToClipboard('lavalabs.co.kr')" title="복사"><i class="fas fa-copy"></i></button></p>
+                <p class="address-row"><i class="fas fa-building"></i> 경기도 고양시 일산서구 일현로 47,<br>2층 Lava Labs <button class="copy-btn" onclick="copyToClipboard('경기도 고양시 일산서구 일현로 47, 2층 Lava Labs')" title="복사"><i class="fas fa-copy"></i></button></p>
+                <p><a href="https://naver.me/5gYPQiSB" target="_blank" rel="noopener noreferrer" class="map-btn"><i class="fas fa-map-marker-alt"></i> 지도에서 보기</a></p>
+            </div>
+            <div class="card-actions">
+                <button class="save-contact-btn" onclick="downloadVCard()">
+                    <i class="fas fa-address-card"></i> 연락처 저장하기
+                </button>
+                <button class="share-btn" onclick="shareCard()" style="display:none">
+                    <i class="fas fa-share-alt"></i> 명함 공유
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 브랜드 링크 허브 -->
+    <section class="links-section">
+        <h2>브랜드 링크</h2>
+        <div class="links-grid">
+            <a href="https://lavalabs.co.kr" target="_blank" rel="noopener noreferrer" class="brand-link" data-tooltip="브랜드 크리에이티브 스튜디오, 공식 홈페이지">
+                <i class="fas fa-globe"></i>
+                <span class="brand-link-text">LAVALABS 공식 홈페이지</span>
+            </a>
+            <a href="https://lavamall.lavalabs.co.kr" target="_blank" rel="noopener noreferrer" class="brand-link" data-tooltip="셀렉트몰, 브랜드 굿즈와 큐레이션 상품">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="brand-link-text">LAVAMALL<br><span class="brand-link-desc">셀렉트몰, 브랜드 굿즈와 큐레이션 상품</span></span>
+            </a>
+            <a href="https://emoseed.lavalabs.co.kr" target="_blank" rel="noopener noreferrer" class="brand-link" data-tooltip="감성 프로그램, 브랜드 내면 성장">
+                <i class="fas fa-seedling"></i>
+                <span class="brand-link-text">EmoSeed<br><span class="brand-link-desc">감성 프로그램, 브랜드 내면 성장</span></span>
+            </a>
+            <a href="https://softmoon.lavalabs.co.kr" target="_blank" rel="noopener noreferrer" class="brand-link" data-tooltip="굿즈 브랜드, 감성 소품과 문구">
+                <i class="fas fa-moon"></i>
+                <span class="brand-link-text">SoftMoon<br><span class="brand-link-desc">굿즈 브랜드, 감성 소품과 문구</span></span>
+            </a>
+        </div>
+    </section>
+
+    <!-- 소셜 미디어 섹션 -->
+    <section class="social-section">
+        <h2>채널 연결</h2>
+        <div class="social-links">
+            <a href="https://www.instagram.com/lavalabs_official/" target="_blank" rel="noopener noreferrer" class="social-link">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://kmong.com/@LavaLabs" target="_blank" rel="noopener noreferrer" class="social-link">
+                <i class="fas fa-store"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 오시는 길 섹션 -->
+    <section class="location-section">
+        <h2>오시는 길</h2>
+        <div class="location-map">
+            <iframe src="https://naver.me/5gYPQiSB" width="100%" height="500" style="border:0; border-radius:12px; margin-bottom:1.5rem;" allowfullscreen="" loading="lazy"></iframe>
+            <a href="https://naver.me/5gYPQiSB" target="_blank" rel="noopener noreferrer" class="map-btn big-map-btn">
+                <i class="fas fa-map-marked-alt"></i> 네이버 지도에서 위치 확인하기
+            </a>
+        </div>
+        <div class="location-info">
+            <p><strong>주소</strong>: 경기도 고양시 일산서구 일현로 47, 2층 Lava Labs</p>
+            <ul>
+                <li><strong>경의중앙선 탄현역</strong> 하차, 도보 5분 (400M)</li>
+                <li><strong>M7731 광역버스</strong> (경남아너스빌.탄현역) 정류장 하차, 도보 4분 (230M)</li>
+            </ul>
+            <div class="location-details">
+                <p><strong>건물명</strong>: 예일큰프라자 (2층)</p>
+                <p><strong>주차</strong>: 지하 주차장 이용 가능 (사전 연락 시)</p>
+                <p><strong>기본 근무시간</strong>: 평일 09:00 - 18:00</p>
+                <p class="visit-note"><i class="fas fa-info-circle"></i> 사전 연락 시 정규 근무 시간 외 또는 주말에도 미팅 가능합니다.<br>사무실이 아닌 다른 장소에서의 미팅도 가능합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ 섹션 -->
+    <section class="faq-section">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>브랜딩 작업은 얼마나 걸리나요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>프로젝트의 규모와 복잡도에 따라 다르지만, 일반적으로 브랜드 아이덴티티 작업은 2-3개월 정도 소요됩니다. 상세 일정은 초기 미팅에서 논의됩니다.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>작업 진행 과정은 어떻게 되나요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>1. 초기 미팅 및 브리프 작성<br>
+                    2. 컨셉 기획 및 제안<br>
+                    3. 디자인 작업 및 수정<br>
+                    4. 최종 디자인 확정<br>
+                    5. 가이드라인 제작 및 파일 전달</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>원격으로도 작업이 가능한가요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>네, 온라인 미팅과 파일 공유를 통해 원격으로도 작업이 가능합니다. 초기 미팅만 대면으로 진행하고, 이후 진행 상황 공유는 온라인으로 진행하는 경우가 많습니다.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>작업 범위와 비용은 어떻게 산정되나요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>프로젝트의 규모, 난이도, 기간 등을 고려하여 산정됩니다. 정확한 견적은 초기 미팅 후 상세 브리프를 바탕으로 제안드립니다.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>브랜드 가이드라인은 어떤 내용이 포함되나요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>브랜드 가이드라인에는 로고 사용법, 색상 시스템, 타이포그래피, 이미지 스타일, 레이아웃 가이드 등 브랜드 아이덴티티를 일관되게 유지하기 위한 모든 규칙이 포함됩니다. 이를 통해 브랜드의 시각적 일관성을 유지하고 효과적인 브랜드 커뮤니케이션이 가능해집니다.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>작업 파일은 어떤 형식으로 전달되나요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>작업 파일은 일반적으로 다음과 같은 형식으로 전달됩니다:<br>
+                    - 로고: AI, EPS, PDF, PNG, JPG<br>
+                    - 브랜드 가이드라인: PDF<br>
+                    - 디자인 소스 파일: AI, PSD<br>
+                    - 웹용 이미지: PNG, JPG, SVG<br>
+                    필요에 따라 추가 형식으로 변환하여 제공해드립니다.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>작업 완료 후 추가 수정이 가능한가요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>네, 작업 완료 후에도 일정 기간 동안 추가 수정이 가능합니다. 일반적으로 최종 파일 전달 후 2주 동안은 무료로 간단한 수정이 가능하며, 이후의 수정은 별도 비용이 발생할 수 있습니다.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>브랜드 컨설팅도 진행하나요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>네, 브랜드 컨설팅을 진행합니다. 브랜드 전략 수립, 타겟 분석, 포지셔닝, 네이밍 등 브랜드의 기초부터 구축까지 전 과정을 지원합니다. 컨설팅은 별도로 진행되며, 프로젝트의 규모와 요구사항에 따라 맞춤형으로 진행됩니다.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>세금계산서 발급이 가능한가요?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>네, 세금계산서 발급이 가능합니다. 작업 완료 후 사업자등록증 사본과 세금계산서 발급에 필요한 정보를 제공해 주시면, 세금계산서를 발급해 드립니다. 개인사업자와 법인 모두 발급 가능합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 문의하기 섹션 -->
+    <section class="contact-section unified-contact">
+        <div class="contact-inner">
+            <button class="contact-btn" onclick="openContactModal()">
+                <i class="fas fa-envelope"></i> 문의하기
+            </button>
+        </div>
+    </section>
+
+    <!-- 푸터 섹션 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <img src="assets/lava_labs_logo.png" alt="LAVA LABS" class="footer-logo">
+                <p>상호명: LAVA LABS</p>
+                <p>대표자: 김경민</p>
+                <p>사업자등록번호: 455-23-01867</p>
+                <p>통신판매업신고번호: 제2025-고양일산서-1126호</p>
+                <p>주소: 경기도 고양시 일산서구 일현로 47, 2층 Lava Labs</p>
+                <p>이메일: info@lavalabs.co.kr</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://lavalabs.co.kr" target="_blank" rel="noopener noreferrer">공식 홈페이지</a>
+                <a href="https://www.instagram.com/lavalabs_official/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://kmong.com/@LavaLabs" target="_blank" rel="noopener noreferrer">Kmong</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 LAVA LABS. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 맞춤 메시지 -->
+    <div id="customMessage" class="custom-message"></div>
+
+    <!-- 문의하기 모달 -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content contact-modal-content">
+            <span class="close" onclick="closeContactModal()">&times;</span>
+            <h2>프로젝트 문의</h2>
+            <p class="modal-subtitle">문의 내용을 남겨주시면 확인 후 연락드리겠습니다.</p>
+            <form id="contactForm" onsubmit="submitContactForm(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user_name">이름 / 담당자명 *</label>
+                        <input type="text" id="user_name" name="user_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_email">이메일 *</label>
+                        <input type="email" id="user_email" name="user_email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user_phone">연락처</label>
+                        <input type="tel" id="user_phone" name="user_phone" placeholder="010-0000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label for="client_type">클라이언트 구분 *</label>
+                        <select id="client_type" name="client_type" required onchange="toggleCustomClientInput(this)">
+                            <option value="">선택해주세요</option>
+                            <option value="개인">개인</option>
+                            <option value="스타트업">스타트업</option>
+                            <option value="중소기업">중소기업</option>
+                            <option value="대기업">대기업</option>
+                            <option value="기관/단체">기관/단체</option>
+                            <option value="custom">직접 입력</option>
+                        </select>
+                        <input type="text" id="custom_client_type" name="custom_client_type" class="custom-input" placeholder="클라이언트 구분을 입력해주세요" style="display:none;">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="project_field">희망 분야 *</label>
+                        <select id="project_field" name="project_field" required onchange="toggleCustomFieldInput(this)">
+                            <option value="">선택해주세요</option>
+                            <option value="브랜드 전략">브랜드 전략</option>
+                            <option value="브랜드 아이덴티티">브랜드 아이덴티티</option>
+                            <option value="로고 디자인">로고 디자인</option>
+                            <option value="웹사이트 제작">웹사이트 제작</option>
+                            <option value="콘텐츠 제작">콘텐츠 제작</option>
+                            <option value="사진/영상 촬영">사진/영상 촬영</option>
+                            <option value="마케팅">마케팅</option>
+                            <option value="컨설팅">컨설팅</option>
+                            <option value="custom">직접 입력</option>
+                        </select>
+                        <input type="text" id="custom_project_field" name="custom_project_field" class="custom-input" placeholder="희망 분야를 입력해주세요" style="display:none;">
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">예산 범위</label>
+                        <select id="budget" name="budget">
+                            <option value="">선택해주세요</option>
+                            <option value="100만원 미만">100만원 미만</option>
+                            <option value="100-300만원">100-300만원</option>
+                            <option value="300-500만원">300-500만원</option>
+                            <option value="500-1000만원">500-1000만원</option>
+                            <option value="1000만원 이상">1000만원 이상</option>
+                            <option value="협의">협의</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="timeline">희망 일정</label>
+                        <select id="timeline" name="timeline">
+                            <option value="">선택해주세요</option>
+                            <option value="1개월 이내">1개월 이내</option>
+                            <option value="1-3개월">1-3개월</option>
+                            <option value="3-6개월">3-6개월</option>
+                            <option value="6개월 이상">6개월 이상</option>
+                            <option value="협의">협의</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="meeting_location">미팅 장소 *</label>
+                        <select id="meeting_location" name="meeting_location" required onchange="toggleCustomLocationInput(this)">
+                            <option value="">선택해주세요</option>
+                            <option value="Lava Labs 사무실">Lava Labs 사무실</option>
+                            <option value="온라인 미팅">온라인 미팅</option>
+                            <option value="클라이언트 사무실">클라이언트 사무실</option>
+                            <option value="서울/수도권 카페">서울/수도권 카페</option>
+                            <option value="custom">직접 입력</option>
+                        </select>
+                        <input type="text" id="custom_meeting_location" name="custom_meeting_location" class="custom-input" placeholder="희망 미팅 장소를 입력해주세요" style="display:none;">
+                    </div>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label>희망 연락 수단 *</label>
+                    <div class="checkbox-options">
+                        <label><input type="checkbox" name="contact_preference" value="이메일"> 이메일</label>
+                        <label><input type="checkbox" name="contact_preference" value="전화"> 전화</label>
+                        <label><input type="checkbox" name="contact_preference" value="문자"> 문자</label>
+                        <label><input type="checkbox" name="contact_preference" value="카카오톡"> 카카오톡</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">문의 내용 *</label>
+                    <textarea id="message" name="message" rows="6" placeholder="프로젝트의 목적, 필요한 작업, 참고할 내용 등을 자유롭게 적어주세요." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> 문의 보내기
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- QR 코드 영역 -->
+    <div class="qr-code-container">
+        <div id="qrcode"></div>
+        <p>QR 코드로 명함 공유</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
