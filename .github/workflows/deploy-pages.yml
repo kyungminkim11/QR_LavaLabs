@@ -23,12 +23,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Restore logo asset
+        run: |
+          cat assets/logo.b64.part* | base64 --decode > assets/lava_labs_logo.png
+          test -s assets/lava_labs_logo.png
+          rm assets/logo.b64.part*
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
