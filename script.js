@@ -1,12 +1,25 @@
 const CONTACT={name:'김경민',title:'Brand Partner',company:'LAVA LABS',phoneDisplay:'010-9057-3970',phone:'+821090573970',email:'info@lavalabs.co.kr',website:'https://lavalabs.co.kr',address:'경기도 고양시 일산서구 일현로 47, 2층 Lava Labs'};
+const SERVICE_LABELS={all:'전체',build:'제작·상담',tools:'운영 서비스',brands:'자체 브랜드',planned:'출시 준비'};
 let toastTimer=null;
 let qrCreated=false;
+
 function showToast(message){const toast=document.getElementById('toast');if(!toast)return;clearTimeout(toastTimer);toast.textContent=message;toast.classList.add('is-visible');toastTimer=setTimeout(()=>toast.classList.remove('is-visible'),2200)}
+
 async function copyText(text){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text)}else{const area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();document.execCommand('copy');area.remove()}showToast('복사했습니다.')}catch(error){console.error(error);showToast('복사하지 못했습니다.')}}
+
 function downloadVCard(){const vcard=['BEGIN:VCARD','VERSION:3.0',`FN:${CONTACT.name}`,`N:${CONTACT.name};;;;`,`TITLE:${CONTACT.title}`,`ORG:${CONTACT.company}`,`TEL;TYPE=CELL:${CONTACT.phone}`,`EMAIL;TYPE=WORK:${CONTACT.email}`,`URL:${CONTACT.website}`,`ADR;TYPE=WORK:;;${CONTACT.address};;;;`,'END:VCARD'].join('\r\n');const blob=new Blob(['\ufeff',vcard],{type:'text/vcard;charset=utf-8'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download=`${CONTACT.company}_${CONTACT.name}.vcf`;document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);showToast('연락처 파일을 저장했습니다.')}
+
 async function shareCard(){const data={title:`${CONTACT.name} | ${CONTACT.company}`,text:`${CONTACT.name} · ${CONTACT.title}\n${CONTACT.phoneDisplay}\n${CONTACT.email}`,url:`${window.location.origin}${window.location.pathname}`};if(navigator.share){try{await navigator.share(data);return}catch(error){if(error.name==='AbortError')return}}await copyText(data.url)}
+
 function createQr(){if(qrCreated||!window.QRCode)return;const target=document.getElementById('qrcode');if(!target)return;new window.QRCode(target,{text:`${window.location.origin}${window.location.pathname}`,width:150,height:150,correctLevel:window.QRCode.CorrectLevel.M});qrCreated=true}
+
 function openQr(){createQr();const panel=document.getElementById('qrPanel');panel?.classList.add('is-open');panel?.setAttribute('aria-hidden','false')}
 function closeQr(){const panel=document.getElementById('qrPanel');panel?.classList.remove('is-open');panel?.setAttribute('aria-hidden','true')}
-function init(){document.querySelectorAll('[data-copy]').forEach(button=>button.addEventListener('click',()=>copyText(button.dataset.copy)));document.querySelectorAll('[data-download-vcard]').forEach(button=>button.addEventListener('click',downloadVCard));document.querySelectorAll('[data-share]').forEach(button=>button.addEventListener('click',shareCard));document.querySelectorAll('[data-open-qr]').forEach(button=>button.addEventListener('click',openQr));document.querySelectorAll('[data-close-qr]').forEach(button=>button.addEventListener('click',closeQr));document.addEventListener('keydown',event=>{if(event.key==='Escape')closeQr()});document.addEventListener('click',event=>{const panel=document.getElementById('qrPanel');if(panel?.classList.contains('is-open')&&!panel.contains(event.target)&&!event.target.closest('[data-open-qr]'))closeQr()})}
+
+function filterServices(filter){const cards=[...document.querySelectorAll('[data-service-card]')];let visibleCount=0;cards.forEach(card=>{const visible=filter==='all'||card.dataset.serviceCategory===filter;card.hidden=!visible;if(visible)visibleCount+=1});const count=document.getElementById('serviceCount');if(count){const label=SERVICE_LABELS[filter]||'서비스';count.textContent=`${label} ${visibleCount}개`}}
+
+function initServiceFilters(){const buttons=[...document.querySelectorAll('[data-service-filter]')];if(!buttons.length)return;buttons.forEach(button=>button.addEventListener('click',()=>{buttons.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));filterServices(button.dataset.serviceFilter)}));filterServices('all')}
+
+function init(){document.querySelectorAll('[data-copy]').forEach(button=>button.addEventListener('click',()=>copyText(button.dataset.copy)));document.querySelectorAll('[data-download-vcard]').forEach(button=>button.addEventListener('click',downloadVCard));document.querySelectorAll('[data-share]').forEach(button=>button.addEventListener('click',shareCard));document.querySelectorAll('[data-open-qr]').forEach(button=>button.addEventListener('click',openQr));document.querySelectorAll('[data-close-qr]').forEach(button=>button.addEventListener('click',closeQr));initServiceFilters();document.addEventListener('keydown',event=>{if(event.key==='Escape')closeQr()});document.addEventListener('click',event=>{const panel=document.getElementById('qrPanel');if(panel?.classList.contains('is-open')&&!panel.contains(event.target)&&!event.target.closest('[data-open-qr]'))closeQr()})}
+
 document.addEventListener('DOMContentLoaded',init);
