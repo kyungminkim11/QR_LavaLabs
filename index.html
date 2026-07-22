@@ -5,30 +5,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0f172a">
   <title>김경민 | LAVA LABS Digital Card</title>
-  <meta name="description" content="LAVA LABS 김경민 Brand Partner의 디지털 명함입니다. 웹·사진·공간·자동화와 라바랩스의 디지털 서비스를 한곳에서 확인할 수 있습니다.">
+  <meta name="description" content="LAVA LABS 김경민 Brand Partner의 디지털 명함입니다. 실물 명함 미리보기와 연락처, 웹·사진·공간·자동화 서비스를 한곳에서 확인할 수 있습니다.">
   <link rel="canonical" href="https://qr.lavalabs.co.kr/">
   <meta property="og:type" content="profile">
   <meta property="og:title" content="김경민 | LAVA LABS Digital Card">
-  <meta property="og:description" content="웹·사진·공간·자동화와 자체 디지털 서비스를 만드는 LAVA LABS 김경민의 디지털 명함">
+  <meta property="og:description" content="실물 명함과 디지털 명함으로 만나는 LAVA LABS 김경민 Brand Partner">
   <meta property="og:url" content="https://qr.lavalabs.co.kr/">
   <meta property="og:image" content="https://qr.lavalabs.co.kr/assets/lava_labs_logo.png">
-  <link rel="icon" type="image/svg+xml" href="assets/lava_labs_logo.svg?v=7">
+  <link rel="icon" type="image/svg+xml" href="assets/lava_labs_logo.svg?v=8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="styles.css?v=7">
-  <link rel="stylesheet" href="logo-fix.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="logo-fix.css?v=8">
   <link rel="stylesheet" href="services.css">
+  <link rel="stylesheet" href="card-modes-20260722.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
-  <script src="script.js?v=7" defer></script>
+  <script src="script.js?v=8" defer></script>
 </head>
 <body>
   <main class="page-shell">
-    <section class="digital-card" aria-labelledby="card-name">
+    <div class="view-mode-shell">
+      <div class="view-mode-switcher" role="tablist" aria-label="명함 보기 방식">
+        <button class="view-mode-button" type="button" role="tab" id="physical-view-tab" aria-controls="physical-view" aria-selected="false" data-card-view-button="physical">
+          <i class="fa-regular fa-id-card" aria-hidden="true"></i><span>실물 명함</span>
+        </button>
+        <button class="view-mode-button" type="button" role="tab" id="digital-view-tab" aria-controls="digital-view" aria-selected="true" data-card-view-button="digital">
+          <i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i><span>디지털 명함</span>
+        </button>
+      </div>
+    </div>
+
+    <section class="physical-card-view card-view-panel" id="physical-view" role="tabpanel" aria-labelledby="physical-view-tab" data-card-view-panel="physical" hidden>
+      <header class="physical-view-heading">
+        <small>PRINTED BUSINESS CARD</small>
+        <h1>실물 명함 미리보기</h1>
+        <p>실제 명함에 가까운 가로 비율로 구성했습니다. 카드를 누르면 앞면과 QR 뒷면이 전환됩니다.</p>
+      </header>
+
+      <div class="business-card-stage">
+        <button class="business-card" type="button" data-flip-card aria-pressed="false" aria-label="명함 앞면과 뒷면 전환">
+          <span class="business-card-inner">
+            <span class="business-card-face business-card-front" aria-label="명함 앞면">
+              <span class="print-brand-panel">
+                <span class="print-brand-mark"><img src="assets/lava_labs_logo.svg?v=8" alt=""></span>
+                <span class="print-brand-copy"><strong>LAVA LABS</strong><span>IDEAS INTO ACTION</span></span>
+              </span>
+              <span class="print-person-panel">
+                <span class="print-person-heading"><small>BRAND PARTNER</small><strong>김경민</strong></span>
+                <span class="print-contact-list">
+                  <span class="print-contact-row"><i class="fa-solid fa-phone" aria-hidden="true"></i><span>010-9057-3970</span></span>
+                  <span class="print-contact-row"><i class="fa-regular fa-envelope" aria-hidden="true"></i><span>info@lavalabs.co.kr</span></span>
+                  <span class="print-contact-row"><i class="fa-solid fa-globe" aria-hidden="true"></i><span>lavalabs.co.kr</span></span>
+                </span>
+              </span>
+            </span>
+
+            <span class="business-card-face business-card-back" aria-label="명함 뒷면">
+              <span class="print-back-copy">
+                <img class="print-back-logo" src="assets/lava_labs_logo.svg?v=8" alt="LAVA LABS">
+                <strong>LAVA LABS</strong>
+                <p>브랜드의 아이디어를 실제 경험과 결과물로 연결합니다.</p>
+                <small>SCAN TO OPEN DIGITAL CARD</small>
+              </span>
+              <span class="print-qr-wrap"><span id="physicalQrcode" aria-label="디지털 명함 QR 코드"></span><span>qr.lavalabs.co.kr</span></span>
+            </span>
+          </span>
+        </button>
+      </div>
+
+      <p class="physical-hint"><i class="fa-solid fa-rotate" aria-hidden="true"></i><span>명함을 눌러 앞·뒷면을 확인하세요.</span></p>
+
+      <div class="physical-controls">
+        <button class="physical-control" type="button" data-flip-card aria-pressed="false"><i class="fa-solid fa-rotate" aria-hidden="true"></i><span>앞·뒷면 뒤집기</span></button>
+        <button class="physical-control" type="button" data-open-qr><i class="fa-solid fa-qrcode" aria-hidden="true"></i><span>QR 크게 보기</span></button>
+      </div>
+
+      <div class="physical-quick-actions" aria-label="빠른 연락">
+        <a href="tel:01090573970"><i class="fa-solid fa-phone" aria-hidden="true"></i><span>전화하기</span></a>
+        <a href="mailto:info@lavalabs.co.kr"><i class="fa-regular fa-envelope" aria-hidden="true"></i><span>이메일</span></a>
+        <button type="button" data-download-vcard><i class="fa-regular fa-address-card" aria-hidden="true"></i><span>연락처 저장</span></button>
+      </div>
+    </section>
+
+    <section class="digital-card card-view-panel" id="digital-view" role="tabpanel" aria-labelledby="digital-view-tab" data-card-view-panel="digital">
       <div class="card-header">
         <div class="brand-lockup">
-          <span class="brand-logo-frame"><img src="assets/lava_labs_logo.svg?v=7" alt="LAVA LABS 로고"></span>
+          <span class="brand-logo-frame"><img src="assets/lava_labs_logo.svg?v=8" alt="LAVA LABS 로고"></span>
           <div><strong>LAVA LABS</strong><span>Digital Business Card</span></div>
         </div>
         <button class="icon-button" type="button" data-share aria-label="명함 공유"><i class="fa-solid fa-arrow-up-from-bracket" aria-hidden="true"></i></button>
@@ -161,7 +225,7 @@
   </main>
 
   <button class="qr-button" type="button" data-open-qr aria-label="이 명함의 QR 코드 보기"><i class="fa-solid fa-qrcode" aria-hidden="true"></i></button>
-  <div class="qr-panel" id="qrPanel" aria-hidden="true"><button class="qr-close" type="button" data-close-qr aria-label="QR 코드 닫기"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button><div id="qrcode"></div><strong>디지털 명함 QR</strong><p>다른 사람에게 이 명함을 보여줄 때 사용할 수 있습니다.</p></div>
+  <div class="qr-panel" id="qrPanel" aria-hidden="true"><button class="qr-close" type="button" data-close-qr aria-label="QR 코드 닫기"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button><div id="qrcode"></div><strong>디지털 명함 QR</strong><p>스캔하면 qr.lavalabs.co.kr로 연결됩니다.</p></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
